@@ -19,6 +19,7 @@ export const {
             gray800: '#131313',
             gray600: '#171717',
             gray400: '#1D1D1D',
+            gray200: '#2E2E2E',
         }
     }
 })

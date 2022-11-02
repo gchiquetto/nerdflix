@@ -12,6 +12,26 @@ export default function Home() {
     <HomeContainer>
       <ItemCard />
       <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
     </HomeContainer>
    </>
   )

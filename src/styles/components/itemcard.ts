@@ -41,8 +41,7 @@ export const ItemCardContainer = styled('div', {
                 opacity: 0.5,
 
                 '&:hover': {
-                    color: '$yellow',
-                }
+                    color: '$yellow',           }
             }            
         },
 

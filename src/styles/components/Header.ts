@@ -1,7 +1,10 @@
 import { styled } from '..'
 
 export const HeaderContainer = styled('header', {
-    backgroundColor: '$gray800',     
+    backgroundColor: '$gray800', 
+    position: 'sticky', 
+    top: 0, 
+    zIndex: 1,
 })
 
 export const HeaderContent = styled('header', {

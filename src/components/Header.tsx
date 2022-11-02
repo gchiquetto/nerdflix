@@ -5,9 +5,11 @@ import { HeaderContainer, HeaderContent, HeaderLogo, HeaderNav, LikesContainer }
 import Link from 'next/link'
 import Navbar from './Navbar'
 import { useState } from 'react'
+import router, { useRouter } from 'next/router'
 
 export default function Header(){
     const [navbarOpen, setNavbarOpen] = useState(false)
+    const router = useRouter();
     return(  
         <HeaderContainer>
             <HeaderContent>
@@ -17,9 +19,9 @@ export default function Header(){
                 { navbarOpen && <Navbar/> }
                 <HeaderNav>
                     <ul>
-                        <li ><Link href='/'><p>HomePage</p></Link></li>
-                        <li><Link href='/series'><p>Series</p></Link></li>
-                        <li><Link href='/movies'><p>Movies</p></Link></li>
+                        <li className={router.pathname == "/" ? "active" : ""}><Link  href='/' onClick={() => setNavbarOpen(false)}><p>HomePage</p></Link></li>
+                        <li className={router.pathname == "/series" ? "active" : ""}><Link href='/series' ><p>Series</p></Link></li>
+                        <li className={router.pathname == "/movies" ? "active" : ""}><Link href='/movies'><p>Movies</p></Link></li>
                     </ul>
                 </HeaderNav> 
                 

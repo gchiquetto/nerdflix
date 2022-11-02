@@ -38,7 +38,8 @@ export const HeaderNav = styled('nav',{
     ul: {
     display: 'flex',
     gap: '3.125rem',
-    
+
+
     li: {
         height: '4.7rem',
         display: 'flex',
@@ -47,6 +48,12 @@ export const HeaderNav = styled('nav',{
         opacity: 0.7,
         cursor: 'pointer',
 
+        '&.active':{
+            color: '$white',
+            opacity: 1,
+            borderBottom: '4px solid $red',
+        },
+
         '&:hover':{
             opacity: 1,
             borderBottom: '4px solid red',
@@ -54,6 +61,7 @@ export const HeaderNav = styled('nav',{
         }
     }
     },
+    
 
     '@media (max-width: 1000px)':{
         display:'none',

@@ -2,23 +2,38 @@ import Image from "next/image";
 import { CardOverview, ItemCardContainer } from "../styles/components/itemcard";
 import { Star } from 'phosphor-react'
 
-export function ItemCard(){
+import nerdflix from '../assets/nerdflix-logo.svg'
+
+interface MovieProps{
+    title: string,
+    year: string,
+    rating: string,
+    urlPoster: string,
+}
+
+interface ItemCardProps{
+    data: MovieProps
+}
+
+export function ItemCard({data} : ItemCardProps){
     return (
         <ItemCardContainer>
-            <Image width={182} height={268} src="https://images-na.ssl-images-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="" />
+            {!data.urlPoster? <Image width={182} height={268} src={nerdflix} alt="" />
+            : <Image width={182} height={268} src={data.urlPoster} alt="" />}
+            
             <div className="overlay">
                 <button title="Like button">
                     <Star size={17}/>
                 </button>
                 
                 <div>
-                    <h2>9.2</h2>
+                    <h2>{data.rating}</h2>
                 </div>
             </div>
             
             <CardOverview>
-                <h3>The Shawshank Redemption</h3>
-                <h4>1994</h4>
+                <h3>{data.title}</h3>
+                <h4>{data.year}</h4>
             </CardOverview>
         </ItemCardContainer>
     )

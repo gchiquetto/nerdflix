@@ -1,11 +1,15 @@
 import { MagnifyingGlass } from "phosphor-react";
 import { BannerContainer, BannerContent, SearchBox, SearchContainer, SortContainer } from "../styles/components/search";
 
-export default function Search(){
+interface Search{
+  title: string
+}
+
+export default function Search({title}: Search){
     return(
     <BannerContainer>
         <BannerContent>
-          <h1>Home</h1>
+          <h1>{title}</h1>
           <form>
           <SearchContainer>
             <SearchBox>

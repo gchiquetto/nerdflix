@@ -1,6 +1,6 @@
 import { styled } from '..'
 
-export const HomeContainer = styled('main', {
+export const GridContainer = styled('main', {
     maxWidth: '90rem',
     width: '100%',
     margin: '0 auto',

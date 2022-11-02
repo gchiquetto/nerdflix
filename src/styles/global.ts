@@ -15,5 +15,15 @@ export const globalStyles = globalCss({
 
     'body, input, button': {
         fontFamily: 'Source Sans Pro, sans-serif',
+        fontSize: '1rem',
+    },
+
+    a: {
+        textDecoration: 'none',
+        color: 'inherit',
+    },
+
+    ul: {
+        listStyle: 'none',
     }
 })

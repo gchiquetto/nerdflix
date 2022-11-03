@@ -8,12 +8,14 @@ interface Search{
 }
 
 export default function Search({title}: Search){
-  const { fetchMovies } = useContext(MoviesContext)
+  const { sortMovies } = useContext(MoviesContext)
 
   function HandleSelectedTitle(event: ChangeEvent<HTMLSelectElement>){
     
-    const mov = fetchMovies(event.target.value)
-    console.log(mov)
+    //const mov = fetchMovies(event.target.value)
+    //console.log(mov)
+
+    sortMovies(event.target.value)
   }
 
     return(

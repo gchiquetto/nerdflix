@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ItemCard } from "../components/ItemCard";
 import Search from "../components/Search";
 import { MoviesContext } from "../contexts/MoviesContext";
@@ -7,6 +7,8 @@ import { GridContainer } from "../styles/pages/container";
 export default function Movies(){
     const {localData} = useContext(MoviesContext)
 
+    useEffect(()=>{},[localData])
+  
     return (    
         <>
             <Search title="Movies"/>

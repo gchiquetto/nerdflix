@@ -84,6 +84,6 @@ export const LikesContainer = styled('div',{
 
     p: {
         fontWeight: 600,
-        lineHeight: '16px'
+        lineHeight: 'px'
     }
 })

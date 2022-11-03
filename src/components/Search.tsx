@@ -11,10 +11,6 @@ export default function Search({title}: Search){
   const { sortMovies } = useContext(MoviesContext)
 
   function HandleSelectedTitle(event: ChangeEvent<HTMLSelectElement>){
-    
-    //const mov = fetchMovies(event.target.value)
-    //console.log(mov)
-
     sortMovies(event.target.value)
   }
 
@@ -35,9 +31,9 @@ export default function Search({title}: Search){
                   <option value="ascending">(A-Z)</option>
                   <option value="descending">(Z-A)</option>
                 </select>
-                <select name="Rating" id="rating">
-                  <option value="ascending">Highest</option>
-                  <option value="descending">Lowest</option>
+                <select name="Rating" id="rating" onChange={HandleSelectedTitle}>
+                  <option value="highest">Highest</option>
+                  <option value="lowest">Lowest</option>
                 </select>
               </div>
             </SortContainer>

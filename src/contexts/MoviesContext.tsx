@@ -22,8 +22,6 @@ export const MoviesContext = createContext({} as MoviesContextType)
 
 
 export function MoviesContextProvider({children}:MoviesContextProviderProps){
-    //const [userLikedMovies, setUserLikedMovies] = useState<UserContextType>()
-    //const movies= [...imdbTop50.data.movies].map((movie) => movie)
     const [localData, setLocalData] = useState<Movies[]>()
 
     useEffect(()=> {
@@ -42,7 +40,6 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
     function sortMovies(mode?: string, name?: string){
         let moviesSorted = []
 
-        console.log(mode)
         if (localData){
           if (mode === 'ascending'){
             moviesSorted = localData.sort((a, b) => {
@@ -50,7 +47,6 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
                 if(b.title > a.title) {return -1}
                 return 0
               })
-              console.log(moviesSorted)
               return setLocalData([...moviesSorted])
           } 
           else if (mode === 'descending'){
@@ -59,9 +55,25 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
                   if(b.title > a.title) {return 1}
                   return 0
                 })
-                console.log(moviesSorted)
                 return setLocalData([...moviesSorted])
           }
+          else if (mode === 'lowest'){
+            moviesSorted = localData.sort((a, b) => {
+                if(a.rating > b.rating) { return 1}
+                if(b.rating > a.rating) {return -1}
+                return 0
+              })
+              return setLocalData([...moviesSorted])
+          } 
+          else if (mode === 'highest'){
+              moviesSorted = localData.sort((a, b) => {
+                  if(a.rating > b.rating) { return -1}
+                  if(b.rating > a.rating) {return 1}
+                  return 0
+                })
+                return setLocalData([...moviesSorted])
+          }
+          
         }        
     }
     

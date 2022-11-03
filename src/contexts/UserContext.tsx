@@ -4,19 +4,36 @@ interface UserContextProviderProps{
     children: ReactNode
 }
 
-interface UserLikedMovies{
-    quantity: number,
-    movies: string[]
-}
 
 interface UserContextType{
-    
+    userLikedMovies: string[]
+    updateLikedMovies: (name: string) => void
 }
 
 export const UserContext = createContext({} as UserContextType)
 
 export function UserContextProvider({children}:UserContextProviderProps){
-    const [userLikedMovies, setUserLikedMovies] = useState<UserLikedMovies>()
+    const [userLikedMovies, setUserLikedMovies] = useState([""])
 
-    
+    function updateLikedMovies(name: string){
+        if (userLikedMovies){
+            const movieAlreadyLiked = userLikedMovies.find(movie => movie === name)
+            
+            if (!!movieAlreadyLiked){
+                const remainedMovies = userLikedMovies.filter(movie => movie !== name)
+
+                setUserLikedMovies(remainedMovies)
+            }
+            else {
+                setUserLikedMovies((state)=> [...state, name])
+            }
+            
+        } else {
+            setUserLikedMovies((state)=> [...state, name])
+        }
+    }
+
+    return(
+        <UserContext.Provider value={{userLikedMovies,updateLikedMovies}}>{children}</UserContext.Provider>
+    )
 }

@@ -13,7 +13,7 @@ export const ItemCardContainer = styled('div', {
         borderRadius: 6,
         objectFit: 'cover',
         width: '100%',
-        height: 268,
+        height: '268',
     },
 
     '.overlay': {
@@ -49,7 +49,8 @@ export const ItemCardContainer = styled('div', {
                 opacity: 0.5,
 
                 '&:hover': {
-                    color: '$yellow',           }
+                    color: '$yellow',           
+                }
             }            
         },
 

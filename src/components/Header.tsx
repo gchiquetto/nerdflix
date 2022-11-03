@@ -4,10 +4,12 @@ import { List, Star } from 'phosphor-react'
 import { HeaderContainer, HeaderContent, HeaderLogo, HeaderNav, LikesContainer } from '../styles/components/header'
 import Link from 'next/link'
 import Navbar from './Navbar'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import { UserContext } from '../contexts/UserContext'
 
 export default function Header(){
+    const {userLikedMovies} = useContext(UserContext)
     const [navbarOpen, setNavbarOpen] = useState(false)
     const router = useRouter();
     
@@ -31,7 +33,7 @@ export default function Header(){
                 </HeaderLogo>
                 <LikesContainer>
                     <Star size={18} weight="fill" />
-                    <p>4</p>
+                    <p>{userLikedMovies.length}</p>
                 </LikesContainer>
             </HeaderContent>
         </HeaderContainer>   

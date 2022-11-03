@@ -8,6 +8,7 @@ export const NavbarContainer = styled('nav',{
     height: '100vh',
     padding: '2rem',
     minWidth: '18.75rem',
+    
 
     ul: {
         flexDirection: 'column',

@@ -16,6 +16,7 @@ interface ItemCardProps{
 }
 
 export function ItemCard({data} : ItemCardProps){
+    //console.log(data)
     return (
         <ItemCardContainer>
             {!data.urlPoster? <Image width={182} height={268} src={nerdflix} alt="" />

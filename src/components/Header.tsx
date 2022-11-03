@@ -5,11 +5,12 @@ import { HeaderContainer, HeaderContent, HeaderLogo, HeaderNav, LikesContainer }
 import Link from 'next/link'
 import Navbar from './Navbar'
 import { useState } from 'react'
-import router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 export default function Header(){
     const [navbarOpen, setNavbarOpen] = useState(false)
     const router = useRouter();
+    
     return(  
         <HeaderContainer>
             <HeaderContent>

@@ -36,8 +36,8 @@ export const HeaderContent = styled('header', {
 
 export const HeaderNav = styled('nav',{
     ul: {
-    display: 'flex',
-    gap: '3.125rem',
+        display: 'flex',
+        gap: '3.125rem',
 
 
     li: {
@@ -84,6 +84,6 @@ export const LikesContainer = styled('div',{
 
     p: {
         fontWeight: 600,
-        lineHeight: 16
+        lineHeight: '16px'
     }
 })

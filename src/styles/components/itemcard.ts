@@ -4,13 +4,16 @@ export const ItemCardContainer = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     gap: '1.25rem',
-    alignItems: 'center',
     cursor: 'pointer',
     position: 'relative',
     overflow: 'hidden',
+    width: '100%',
 
     img: {
         borderRadius: 6,
+        objectFit: 'cover',
+        width: '100%',
+        height: 268,
     },
 
     '.overlay': {
@@ -29,6 +32,11 @@ export const ItemCardContainer = styled('div', {
         transform: 'translateY(110%)',
         opacity: 0,
         transition: 'all 0.3s ease-in-out',
+
+        h2 :{
+            fontSize: '3.25rem',
+            fontWeight: 300,
+        },
 
         button: {
             background: 'transparent',

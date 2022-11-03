@@ -1,4 +1,6 @@
 import { MagnifyingGlass } from "phosphor-react";
+import { ChangeEvent, useContext } from "react";
+import { MoviesContext } from "../contexts/MoviesContext";
 import { BannerContainer, BannerContent, SearchBox, SearchContainer, SortContainer } from "../styles/components/search";
 
 interface Search{
@@ -6,6 +8,14 @@ interface Search{
 }
 
 export default function Search({title}: Search){
+  const { fetchMovies } = useContext(MoviesContext)
+
+  function HandleSelectedTitle(event: ChangeEvent<HTMLSelectElement>){
+    
+    const mov = fetchMovies(event.target.value)
+    console.log(mov)
+  }
+
     return(
     <BannerContainer>
         <BannerContent>
@@ -19,9 +29,9 @@ export default function Search({title}: Search){
             <SortContainer>
               <h2>Sort by</h2>
               <div>
-                <select name="Title" id="title">
+                <select name="Title" id="title" onChange={HandleSelectedTitle}>
                   <option value="ascending">(A-Z)</option>
-                  <option value="descending ">(Z-A)</option>
+                  <option value="descending">(Z-A)</option>
                 </select>
                 <select name="Rating" id="rating">
                   <option value="ascending">Highest</option>

@@ -14,7 +14,6 @@ interface Movies{
 }
 
 interface MoviesContextType{
-    movies: Movies[]
     localData?: Movies[]
     sorthMovies: (mode: string) => void
 }
@@ -24,7 +23,7 @@ export const MoviesContext = createContext({} as MoviesContextType)
 
 export function MoviesContextProvider({children}:MoviesContextProviderProps){
     //const [userLikedMovies, setUserLikedMovies] = useState<UserContextType>()
-    const movies= [...imdbTop50.data.movies].map((movie) => movie)
+    //const movies= [...imdbTop50.data.movies].map((movie) => movie)
     const [localData, setLocalData] = useState<Movies[]>()
     const [loading, setLoading] = useState(true);
 
@@ -70,7 +69,7 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
     }
     
     return (
-        <MoviesContext.Provider value={{movies, localData, sorthMovies}}>{children}</MoviesContext.Provider>
+        <MoviesContext.Provider value={{localData, sorthMovies}}>{children}</MoviesContext.Provider>
     )
     
 }

@@ -18,11 +18,13 @@ interface ItemCardProps{
 }
 
 export function ItemCard({data} : ItemCardProps){
-    const {updateLikedMovies} = useContext(UserContext)
+    const {userLikedMovies, updateLikedMovies} = useContext(UserContext)
 
     function handleLike(){
         updateLikedMovies(data.title)
     }
+
+    const movieLiked = userLikedMovies.find(movie => movie === data.title)
 
     return (
         <ItemCardContainer>
@@ -31,7 +33,7 @@ export function ItemCard({data} : ItemCardProps){
             
             <div className="overlay">
                 <button onClick={handleLike} title="Like button">
-                    <Star size={17}/>
+                    <Star size={17} weight={!!movieLiked ? 'fill' : 'duotone'}/>
                 </button>
                 
                 <div>

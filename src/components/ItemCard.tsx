@@ -3,6 +3,8 @@ import { CardOverview, ItemCardContainer } from "../styles/components/itemcard";
 import { Star } from 'phosphor-react'
 
 import nerdflix from '../assets/nerdflix-logo.svg'
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 interface MovieProps{
     title: string,
@@ -16,14 +18,19 @@ interface ItemCardProps{
 }
 
 export function ItemCard({data} : ItemCardProps){
-    //console.log(data)
+    const {updateLikedMovies} = useContext(UserContext)
+
+    function handleLike(){
+        updateLikedMovies(data.title)
+    }
+
     return (
         <ItemCardContainer>
             {!data.urlPoster? <Image width={182} height={268} src={nerdflix} alt="" />
             : <Image width={182} height={268} src={data.urlPoster} alt="" />}
             
             <div className="overlay">
-                <button title="Like button">
+                <button onClick={handleLike} title="Like button">
                     <Star size={17}/>
                 </button>
                 

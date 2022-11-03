@@ -13,7 +13,7 @@ interface UserContextType{
 export const UserContext = createContext({} as UserContextType)
 
 export function UserContextProvider({children}:UserContextProviderProps){
-    const [userLikedMovies, setUserLikedMovies] = useState([""])
+    const [userLikedMovies, setUserLikedMovies] = useState<string[]>([])
 
     function updateLikedMovies(name: string){
         if (userLikedMovies){

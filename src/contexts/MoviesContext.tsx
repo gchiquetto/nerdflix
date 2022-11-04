@@ -40,40 +40,40 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
 
     function sortMovies(mode?: string, name?: string){
         let moviesSorted = []
-
+        
         if (localData){
-          if (mode === 'ascending'){
-            moviesSorted = localData.sort((a, b) => {
-                if(a.title > b.title) { return 1}
-                if(b.title > a.title) {return -1}
-                return 0
-              })
+          switch(mode){
+            case 'ascending':
+              moviesSorted = localData.sort((a, b) => {
+                  if(a.title > b.title) { return 1}
+                  if(b.title > a.title) {return -1}
+                  return 0
+                })
               return setLocalData([...moviesSorted])
-          } 
-          else if (mode === 'descending'){
+            case  'descending':
               moviesSorted = localData.sort((a, b) => {
                   if(a.title > b.title) { return -1}
                   if(b.title > a.title) {return 1}
                   return 0
                 })
                 return setLocalData([...moviesSorted])
-          }
-          else if (mode === 'lowest'){
-            moviesSorted = localData.sort((a, b) => {
-                if(a.rating > b.rating) { return 1}
-                if(b.rating > a.rating) {return -1}
-                return 0
-              })
-              return setLocalData([...moviesSorted])
-          } 
-          else if (mode === 'highest'){
+            case 'lowest':
+              moviesSorted = localData.sort((a, b) => {
+                  if(a.rating > b.rating) { return 1}
+                  if(b.rating > a.rating) {return -1}
+                  return 0
+                })
+                return setLocalData([...moviesSorted])
+            case 'highest':
               moviesSorted = localData.sort((a, b) => {
                   if(a.rating > b.rating) { return -1}
                   if(b.rating > a.rating) {return 1}
                   return 0
                 })
                 return setLocalData([...moviesSorted])
-          }          
+            default:
+              fetchMovies()
+          }    
         }        
     }
 

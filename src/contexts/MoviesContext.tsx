@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, ReactNode, useEffect, useState } from "react";
-import imdbTop50 from '../utils/imdb-top-50.json'
 
 interface MoviesContextProviderProps{
     children: ReactNode
@@ -16,6 +15,7 @@ interface Movies{
 interface MoviesContextType{
     localData?: Movies[]
     sortMovies: (mode: string, name?: string) => void
+    searchMovies: (title: string) => void
 }
 
 export const MoviesContext = createContext({} as MoviesContextType)
@@ -25,17 +25,18 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
     const [localData, setLocalData] = useState<Movies[]>()
 
     useEffect(()=> {
-        const fetchMovies = async() => {
-          try {
-            const {data: response} = await axios.get('http://localhost:3000/imdb-top-50.json')
-            setLocalData(response.data.movies)
-          } catch(error){
-            setLocalData([])
-            console.log(error)
-          }
-        }
-        fetchMovies()
-      },[])
+      fetchMovies()
+    },[])
+
+    async function fetchMovies(){
+      try{
+        const {data: response} = await axios.get('http://localhost:3000/imdb-top-50.json')
+        setLocalData(response.data.movies)
+      }catch(error){
+        setLocalData([])
+        console.log(error)
+      }
+    }
 
     function sortMovies(mode?: string, name?: string){
         let moviesSorted = []
@@ -72,13 +73,20 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
                   return 0
                 })
                 return setLocalData([...moviesSorted])
-          }
-          
+          }          
         }        
+    }
+
+    function searchMovies(title : string){
+      if (title !== '' ) {
+        const newMovies = localData?.filter(movie => movie.title.search(title) !== -1 && movie)
+        return setLocalData(newMovies)
+      } else {
+        fetchMovies()
+      }
     }
     
     return (
-        <MoviesContext.Provider value={{localData, sortMovies}}>{children}</MoviesContext.Provider>
-    )
-    
+        <MoviesContext.Provider value={{localData, sortMovies, searchMovies}}>{children}</MoviesContext.Provider>
+    )    
 }

@@ -79,11 +79,15 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
 
     function searchMovies(title : string){
       if (title !== '' ) {
-        const newMovies = localData?.filter(movie => movie.title.search(title) !== -1 && movie)
+        const newMovies = localData?.filter(movie => movie.title.search(formatSearchTitle(title)) !== -1 && movie)
         return setLocalData(newMovies)
       } else {
         fetchMovies()
       }
+    }
+
+    function formatSearchTitle(title: string){
+      return title.split(" ").map(name => title.charAt(0).toUpperCase() + title.slice(1)).join(" ")
     }
     
     return (

@@ -11,7 +11,7 @@ export const ItemCardContainer = styled('div', {
 
     img: {
         borderRadius: 6,
-        objectFit: 'cover',
+        objectFit: 'fit',
         width: '100%',
         height: '268',
     },

@@ -14,7 +14,7 @@ interface Movies{
 
 interface MoviesContextType{
     localData?: Movies[]
-    sortMovies: (mode: string, name?: string) => void
+    sortMovies: (mode: string) => void
     searchMovies: (title: string) => void
 }
 
@@ -34,11 +34,11 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
         setLocalData(response.data.movies)
       }catch(error){
         setLocalData([])
-        console.log(error)
+        console.log(error + 'err')
       }
     }
 
-    function sortMovies(mode?: string, name?: string){
+    function sortMovies(mode?: string){
         let moviesSorted = []
         
         if (localData){

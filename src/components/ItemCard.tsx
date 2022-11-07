@@ -23,23 +23,21 @@ export function ItemCard({data} : ItemCardProps){
     const [moviePosterUrl, setmoviePosterUrl] = useState("")
 
     useEffect(()=> {
+        const fetchMoviePoster = async () => {
+            try{
+                const {data: response} = await axios.get(data.urlPoster)
+                setmoviePosterUrl(data.urlPoster)
+              }catch(error){
+                  setmoviePosterUrl(nerdflix)
+                console.log(error + 'err')
+              }
+        }
         fetchMoviePoster()
-      },[])
+      },[data, moviePosterUrl])
 
     function handleLike(){
         updateLikedMovies(data.title)
     }
-
-    async function fetchMoviePoster(){
-        try{
-          const {data: response} = await axios.get(data.urlPoster)
-          setmoviePosterUrl(data.urlPoster)
-          console.log(moviePosterUrl)
-        }catch(error){
-            setmoviePosterUrl(nerdflix)
-          console.log(error + 'err')
-        }
-      }
 
     const movieLiked = userLikedMovies.find(movie => movie === data.title)
 

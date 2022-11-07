@@ -30,9 +30,12 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
 
     async function fetchMovies(){
       try{
-        const {data: response} = await axios.get('http://localhost:3000/imdb-top-50.json')
+        const {data: response, status} = await axios.get('http://localhost:3000/imdb-top-50.json')
+        if (status === 404) throw new Error (` errrr`)
         setLocalData(response.data.movies)
       }catch(error){
+        console.log('err')
+        throw error
         setLocalData([])
         console.log(error + 'err')
       }
@@ -79,8 +82,9 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
 
     function searchMovies(title : string){
       if (title !== '' ) {
-        const newMovies = localData?.filter(movie => movie.title.search(formatSearchTitle(title)) !== -1 && movie)
-        return setLocalData(newMovies)
+        const searchMovies = localData?.filter(movie => movie.title.search(formatSearchTitle(title)) !== -1 && movie)
+        console.log(searchMovies)
+        return setLocalData(searchMovies)
       } else {
         fetchMovies()
       }

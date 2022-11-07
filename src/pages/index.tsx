@@ -1,30 +1,24 @@
 import { ItemCard } from '../components/ItemCard'
 import Search from '../components/Search'
-import imdbTop50 from '../utils/imdb-top-50.json'
-import axios from "axios"
 
 import { GridContainer } from '../styles/pages/container'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
+import { MoviesContext } from '../contexts/MoviesContext'
 
 export default function Home() {
-  const [localData, setLocalData] = useState([])
-  const movies = [...imdbTop50.data.movies].map((movie) => movie)
+  const {localData} = useContext(MoviesContext)
 
-  useEffect(()=> {
-    axios.get('../utils/imdb-top-50.json')
-    .then((res)=> setLocalData(res.data))
-    .catch(err=> console.log(err.message))
-  },[])
-
-
-
+  useEffect(()=>{},[localData])
+  
   return (
     <>
-    <Search title="Home" />
-    <GridContainer>
-      {movies.map((movie, i) => <ItemCard key={i} data = {movie}/>)}
-      
-    </GridContainer>
+      <Search title="Home" />
+      <GridContainer>
+      {localData && 
+        localData.map((movie, i) => <ItemCard key={i} data = {movie}/>)
+      }
+      </GridContainer>
+
    </>
   )
 }

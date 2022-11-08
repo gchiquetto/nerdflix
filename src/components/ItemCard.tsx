@@ -20,7 +20,7 @@ interface ItemCardProps{
 
 export function ItemCard({data} : ItemCardProps){
     const {userLikedMovies, updateLikedMovies} = useContext(UserContext)
-    const [moviePosterUrl, setmoviePosterUrl] = useState("")
+    const [moviePosterUrl, setmoviePosterUrl] = useState(nerdflix)
 
     useEffect(()=> {
         const fetchMoviePoster = async () => {
@@ -43,7 +43,10 @@ export function ItemCard({data} : ItemCardProps){
 
     return (
         <ItemCardContainer>
-            <Image width={182} height={268} src={moviePosterUrl} alt="" />
+            <div className="image-container">
+                <Image width={182} height={268} src={moviePosterUrl} alt="" />
+            </div>
+            
             <div className="overlay">
                 <button onClick={handleLike} title="Like button">
                     <Star size={17} weight={!!movieLiked ? 'fill' : 'duotone'}/>

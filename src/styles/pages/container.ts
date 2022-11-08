@@ -6,6 +6,7 @@ export const GridContainer = styled('main', {
     margin: '0 auto',
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(182px, 1fr))',
+    justifyItems: 'center',
     gap: '3.125rem',
     marginTop: '3.5rem',
 

@@ -7,13 +7,19 @@ export const ItemCardContainer = styled('div', {
     cursor: 'pointer',
     position: 'relative',
     overflow: 'hidden',
-    width: '100%',
+    maxWidth: 182,
 
-    img: {
+    '.image-container':{
+        height: 268,
+        overflow: 'hidden',
         borderRadius: 6,
-        objectFit: 'fit',
-        width: '100%',
-        height: '268',
+        display:'flex',
+
+        img: {            
+            objectFit: 'fit',
+            width: '100%',
+            height: 'auto',
+        },
     },
 
     '.overlay': {

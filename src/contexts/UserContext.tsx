@@ -26,12 +26,10 @@ export function UserContextProvider({children}:UserContextProviderProps){
     },[])
 
     useEffect(()=>{
-        if (userLikedMovies.length >= 0){
+        if (userLikedMovies.length > 0){
             const stateJSON = JSON.stringify(userLikedMovies)
             localStorage.setItem('@nerdflix:liked-movies-1.0.0', stateJSON)
-        } else {
-            localStorage.removeItem('@nerdflix:liked-movies-1.0.0')
-        }
+        } 
     },[userLikedMovies])
 
     function updateLikedMovies(name: string){
@@ -42,6 +40,10 @@ export function UserContextProvider({children}:UserContextProviderProps){
                 const remainedMovies = userLikedMovies.filter(movie => movie !== name)
 
                 setUserLikedMovies(remainedMovies)
+
+                if (remainedMovies.length === 0){
+                    localStorage.removeItem('@nerdflix:liked-movies-1.0.0')
+                }
             }
             else {
                 setUserLikedMovies((state)=> [...state, name])

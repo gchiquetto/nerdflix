@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface UserContextProviderProps{
     children: ReactNode
@@ -14,6 +14,25 @@ export const UserContext = createContext({} as UserContextType)
 
 export function UserContextProvider({children}:UserContextProviderProps){
     const [userLikedMovies, setUserLikedMovies] = useState<string[]>([])
+
+    useEffect(()=>{
+        const storedStateJSON = localStorage.getItem('@nerdflix:liked-movies-1.0.0')
+        if(storedStateJSON){
+            const likedMoviesStored = JSON.parse(storedStateJSON)
+            return setUserLikedMovies([...likedMoviesStored])
+        } else {
+            setUserLikedMovies([])
+        }
+    },[])
+
+    useEffect(()=>{
+        if (userLikedMovies.length >= 0){
+            const stateJSON = JSON.stringify(userLikedMovies)
+            localStorage.setItem('@nerdflix:liked-movies-1.0.0', stateJSON)
+        } else {
+            localStorage.removeItem('@nerdflix:liked-movies-1.0.0')
+        }
+    },[userLikedMovies])
 
     function updateLikedMovies(name: string){
         if (userLikedMovies){

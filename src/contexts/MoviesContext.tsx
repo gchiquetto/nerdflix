@@ -31,7 +31,7 @@ export function MoviesContextProvider({children}:MoviesContextProviderProps){
     async function fetchMovies(){
       try{
         const {data: response, status} = await axios.get('http://localhost:3000/imdb-top-50.json')
-        if (status === 404) throw new Error (` errrr`)
+        //if (status === 200) throw new Error (` error: }`)
         setLocalData(response.data.movies)
       }catch(error){
         console.log('err')

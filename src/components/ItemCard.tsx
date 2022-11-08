@@ -29,7 +29,7 @@ export function ItemCard({data} : ItemCardProps){
                 setmoviePosterUrl(data.urlPoster)
               }catch(error){
                   setmoviePosterUrl(nerdflix)
-                console.log(error + 'err')
+                console.log(error)
               }
         }
         fetchMoviePoster()
